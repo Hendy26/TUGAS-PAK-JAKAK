@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Codashop Inspired UI with Popup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #a855f7;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      /* Smooth fade in animation for popup */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Container for grid cards consistent style */
+      .card {
+        @apply rounded-lg overflow-hidden cursor-pointer transition transform hover:scale-[1.05] hover:shadow-lg shadow-md bg-gradient-to-tr from-[#2a2a3c] to-[#1c1c29];
+      }
+
+      /* Title shadow */
+      .section-title {
+        @apply text-white text-2xl md:text-3xl font-bold mb-5 tracking-wide;
+        text-shadow: 1px 1px 3px #8b5cf6;
+      }
+
+      /* Section subtitle styling for smaller displays */
+      .show-more {
+        @apply text-indigo-400 text-sm cursor-pointer font-semibold hover:underline mt-2 inline-block;
+      }
+
+      /* Responsive grid controlling columns */
+      .game-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    </style>
+  </head>
+  <body class="bg-[#170938] text-gray-100 font-sans select-none">
+    <!-- Header -->
+    <header class="bg-[#240d66] p-4 flex justify-between items-center border-b border-indigo-700 sticky top-0 z-40">
+      <div class="flex items-center space-x-3">
+        <svg class="w-8 h-8 fill-indigo-400" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="none" /></svg>
+        <h1 class="text-white font-bold text-xl select-text">CODASHOP</h1>
+      </div>
+      <nav>
+        <button id="openPopupBtn" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md text-white font-semibold transition">Daftar</button>
+      </nav>
+    </header>
+
+    <main class="px-4 md:px-8 py-6 max-w-[1280px] mx-auto">
+      <!-- Banner slider -->
+      <section class="mb-8 relative rounded-lg overflow-hidden">
+        <div
+          class="w-full relative h-44 md:h-64 bg-gradient-to-r from-indigo-900 via-purple-900 to-purple-800 flex items-center justify-center text-xl font-semibold text-white select-text"
+          style="background-image: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b9d09231-6efe-4d47-b130-47c4e3c5a291.png'); background-size: cover; background-position: center"
+        >
+          <div class="bg-black bg-opacity-50 p-6 rounded-lg max-w-xl text-center">
+            DAPETIN LEBIH BANYAK UNTUNG PAKAI DAILY BOOSTERS DAN DAILY FCPI<br />
+            <button class="mt-3 px-5 py-2 bg-indigo-600 hover:bg-indigo-700 rounded font-bold transition">Cek Info Terbaru</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sections -->
+      <section>
+        <h2 class="section-title">NEW</h2>
+        <div class="grid game-grid gap-4">
+          <!-- Cards repeated example -->
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5fe6bdbe-54af-4a57-a81c-272731516c8c.png"
+              alt="Dark Fornex Garena Shells Voucher game cover art showing a dark soldier in combat gear"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1eb3caf6-bc23-4d27-a839-44ee5dda4fd1.png'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="Dark Fornex Garena Shells Voucher">Dark Fornex Garena Shells Voucher</h3>
+          </div>
+
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c46c599e-51c2-4518-ac50-4ffeea15b173.png"
+              alt="ECGON: The Dark Arena game cover art featuring dark fantasy warriors"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://placehold.co/256x360?text=Image+Missing'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="ECGON: The Dark Arena">ECGON: The Dark Arena</h3>
+          </div>
+
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5e2e3a1b-9e66-4473-b0e9-ccd53f56ee8e.png"
+              alt="KAGOU Harvestmaster game cover with mysterious warrior and supernatural theme"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://placehold.co/256x360?text=Image+Missing'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="KAGOU Harvestmaster">KAGOU Harvestmaster</h3>
+          </div>
+
+          <!-- Add more cards as needed with placeholders and meaningful alt texts -->
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="section-title">WEB STORE</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+          <div class="card p-4 flex flex-col items-center justify-center">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5b2b78f3-32ac-4b76-8d4d-3aac2823c4ad.png"
+              alt="Webstore banner for EA SPORTS FC Mobile showing football theme and offers"
+              class="rounded-lg mb-3 object-cover shadow-md"
+              onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fe661846-6a32-45fb-9f21-2b8807669bfc.png'"
+            />
+            <p class="text-indigo-300 font-semibold text-center">EA SPORTS FC Mobile Webstore</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="section-title">POPULER</h2>
+        <div class="grid game-grid gap-4">
+          <!-- Example cards repeated -->
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/70544f02-9e7d-4902-899e-a61f8e0a2a1f.png"
+              alt="Mobile Legends: Bang Bang popular game cover featuring characters in battle"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://placehold.co/256x360?text=Image+Missing'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="Mobile Legends: Bang Bang">Mobile Legends: Bang Bang</h3>
+          </div>
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6d3e5469-1b00-4d07-b0fd-3919716860e7.png"
+              alt="Free Fire popular battle royale cover art with players ready for combat"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://placehold.co/256x360?text=Image+Missing'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="Free Fire">Free Fire</h3>
+          </div>
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2c5844b2-e195-415c-af7c-606d85c7388f.png"
+              alt="Genshin Impact popular anime style open world game cover"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://placehold.co/256x360?text=Image+Missing'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="Genshin Impact">Genshin Impact</h3>
+          </div>
+          <!-- More cards can be repeated here -->
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="section-title">VOUCHER</h2>
+        <div class="grid game-grid gap-4">
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6f961aa8-d065-44e5-9542-6ec96385ee7e.png"
+              alt="Codashop Gifting voucher cover art with bright colors and gift box imagery"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://placehold.co/256x360?text=Image+Missing'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="Codashop Gifting">Codashop Gifting</h3>
+          </div>
+
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0a9c1833-51b1-49fb-b68c-8af16f63f55f.png"
+              alt="Roblox Gift Cards voucher cover art showing Roblox characters and bright background"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://placehold.co/256x360?text=Image+Missing'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="Roblox Gift Cards">Roblox Gift Cards</h3>
+          </div>
+          <!-- More voucher cards -->
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="section-title">GAMES</h2>
+        <div class="grid game-grid gap-4">
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e187476d-096a-4474-8797-96917bdb6f9d.png"
+              alt="AFK Journey game cover art with fantasy style character and environment"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://placehold.co/256x360?text=Image+Missing'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="AFK Journey">AFK Journey</h3>
+          </div>
+
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/728543ac-b0f2-4505-bd2d-534ac7ca9928.png"
+              alt="Culinary Tour game cover art featuring food and character art"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://placehold.co/256x360?text=Image+Missing'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="Culinary Tour">Culinary Tour</h3>
+          </div>
+          <!-- More game cards -->
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="section-title">ENTERTAINMENT</h2>
+        <div class="grid game-grid gap-4">
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/870d06df-fea5-44c1-b1f5-e84bb67cf7d2.png"
+              alt="StarMaker entertainment app icon and cover"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://placehold.co/256x360?text=Image+Missing'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="StarMaker">StarMaker</h3>
+          </div>
+          <div class="card p-3">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e0711b44-32de-4966-a20d-883e5328dea2.png"
+              alt="SUGO entertainment app icon bright and colorful"
+              class="rounded-lg w-full mb-2 object-cover h-40 shadow-lg"
+              onerror="this.onerror=null;this.src='https://placehold.co/256x360?text=Image+Missing'"
+            />
+            <h3 class="text-white font-semibold text-sm truncate" title="SUGO">SUGO</h3>
+          </div>
+          <!-- More entertainment cards -->
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="section-title">NEWS AND UPDATES</h2>
+        <div class="space-y-4">
+          <div class="bg-gradient-to-r from-indigo-900 to-purple-900 rounded-lg p-4 flex items-center space-x-4 shadow-md cursor-pointer hover:shadow-xl transition">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f0542932-6ae0-4b13-a9dd-e1936d8515b9.png"
+              alt="Promo banner showing latest Codashop promo with bright colors and text"
+              class="w-28 h-20 rounded-lg object-cover flex-shrink-0"
+              onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/34f04529-a9c2-466a-b672-80e338f520cd.png'"
+            />
+            <div>
+              <h3 class="font-semibold text-lg text-indigo-300">PROMO</h3>
+              <p class="text-gray-300 text-sm max-w-lg">Dapatkan berbagai promo dan bonus menarik sekarang!</p>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-indigo-900 to-purple-900 rounded-lg p-4 flex items-center space-x-4 shadow-md cursor-pointer hover:shadow-xl transition">
+            <img
+              src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9466a8e3-4a45-4086-b029-5035b1830fa2.png"
+              alt="Warning banner about fake Codashop app scams with masked hacker image"
+              class="w-28 h-20 rounded-lg object-cover flex-shrink-0"
+              onerror="this.onerror=null;this.src='https://placehold.co/120x80?text=Image+Missing'"
+            />
+            <div>
+              <h3 class="font-semibold text-lg text-pink-400">WASPADA PENIPUAN APK!</h3>
+              <p class="text-gray-300 text-sm max-w-lg">Hati-hati dengan aplikasi palsu Codashop yang dapat merugikan Anda.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-10 bg-gradient-to-tr from-indigo-900 via-purple-900 to-purple-800 rounded-lg p-6 shadow-lg text-gray-300 leading-relaxed text-sm md:text-base max-w-5xl mx-auto">
+        <h2 class="section-title text-white mb-4">CODASHOP INDONESIA</h2>
+        <p class="mb-3">Codashop: Website top-up terbesar, tercepat dan terpercaya di Indonesia.</p>
+        <ul class="list-disc list-inside space-y-1">
+          <li><span class="font-semibold text-indigo-400">Bayar dan main dengan mudah:</span> Nikmati metode pembayaran lengkap dan cepat di Codashop tanpa harus registrasi.</li>
+          <li><span class="font-semibold text-indigo-400">Metode pembayaran terbaik:</span> Kami menerima berbagai metode populer dari e-wallets, kartu kredit, hingga pulsa, sesuai kebutuhan Anda.</li>
+          <li><span class="font-semibold text-indigo-400">Promo menarik:</span> Banyak promo dan diskon otomatis di Codashop, khusus untuk para gamer.</li>
+          <li><span class="font-semibold text-indigo-400">Deposit mudah:</span> Isi saldo Codashop dengan berbagai metode pembayaran cepat dan aman.</li>
+          <li><span class="font-semibold text-indigo-400">Pengiriman instan:</span> Voucher game langsung terkirim ke akun Anda setelah pembayaran berhasil.</li>
+          <li><span class="font-semibold text-indigo-400">Layanan Pelanggan Cepat & Ramah:</span> Tim support 24 jam siap membantu via chat dan social media.</li>
+          <li><span class="font-semibold text-indigo-400">Dapatkan Lebih Banyak Keuntungan:</span> Program referral dan bonus top-up dengan berbagai hadiah menarik setiap hari.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="mt-16 bg-indigo-900 text-indigo-100 px-6 py-6 text-xs sm:text-sm select-text max-w-7xl mx-auto">
+      <div class="flex flex-wrap justify-between items-center gap-4">
+        <div class="flex flex-col space-y-1">
+          <span><strong>Untuk Penerbit</strong></span>
+          <a href="#" class="hover:underline">Daftar jadi publisher di Codashop</a>
+          <a href="#" class="hover:underline">Panduan top-up untuk kerjasama kami</a>
+        </div>
+        <div class="flex flex-col space-y-1">
+          <span><strong>Butuh Bantuan?</strong></span>
+          <a href="#" class="hover:underline flex items-center gap-1">Hubungi Kami</a>
+        </div>
+        <div class="flex flex-col space-y-1">
+          <span><strong>Area</strong></span>
+          <a href="#" class="hover:underline">Indonesia</a>
+        </div>
+        <div class="flex flex-col space-y-1">
+          <span><strong>Dapatkan berita Coda di:</strong></span>
+          <div class="flex space-x-2">
+            <a href="#" aria-label="Facebook" class="hover:text-indigo-400"
+              ><svg fill="currentColor" height="20" width="20" viewBox="0 0 24 24">
+                <path d="M22 12a10 10 0 10-11.5 9.8v-6.93h-2.5v-2.8h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.2 0-1.5.7-1.5 1.4v1.73h2.6l-.4 2.8h-2.2v6.93A10 10 0 0022 12z" /></svg
+            ></a>
+            <a href="#" aria-label="Instagram" class="hover:text-indigo-400"
+              ><svg fill="currentColor" height="20" width="20" viewBox="0 0 24 24">
+                <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm8.7 3.5a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0zM12 7a5 5 0 110 10 5 5 0 010-10zm0 8a3 3 0 100-6 3 3 0 000 6z" /></svg
+            ></a>
+            <a href="#" aria-label="YouTube" class="hover:text-indigo-400"
+              ><svg fill="currentColor" height="20" width="20" viewBox="0 0 24 24"><path d="M10 15l5.2-3L10 9v6zm12-5v4a3 3 0 01-3 3H5a3 3 0 01-3-3v-4a3 3 0 013-3h14a3 3 0 013 3z" /></svg
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 border-t border-indigo-700 pt-4 text-center text-indigo-400">© 2024 Codashop Indonesia. All rights reserved.</div>
+    </footer>
+
+    <!-- Popup -->
+    <div id="popupOverlay" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50">
+      <div class="bg-[#2e1a7c] rounded-lg max-w-md w-full p-6 mx-4 relative shadow-xl animate-fadeIn">
+        <button id="closePopupBtn" aria-label="Tutup popup" class="absolute top-3 right-3 text-indigo-200 hover:text-indigo-400 font-bold text-2xl leading-none cursor-pointer">&times;</button>
+        <h3 class="text-white text-2xl font-bold mb-4">Daftar Sekarang</h3>
+        <p class="mb-4 text-indigo-300">Nikmati akses cepat ke promo dan banyak keuntungan lainnya dengan daftar Codashop sekarang!</p>
+        <form id="registerForm" class="space-y-4">
+          <input type="text" name="username" placeholder="Nama Pengguna" required class="w-full p-3 rounded bg-[#3b2d72] border border-indigo-500 text-white placeholder-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          <input type="email" name="email" placeholder="Email" required class="w-full p-3 rounded bg-[#3b2d72] border border-indigo-500 text-white placeholder-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          <input
+            type="password"
+            name="password"
+            placeholder="Kata Sandi"
+            required
+            minlength="6"
+            class="w-full p-3 rounded bg-[#3b2d72] border border-indigo-500 text-white placeholder-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+          <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 py-3 rounded font-semibold text-white transition focus:ring-4 focus:ring-indigo-400">Daftar</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Elements
+      const openPopupBtn = document.getElementById("openPopupBtn");
+      const popupOverlay = document.getElementById("popupOverlay");
+      const closePopupBtn = document.getElementById("closePopupBtn");
+      const registerForm = document.getElementById("registerForm");
+
+      // Show popup
+      openPopupBtn.addEventListener("click", () => {
+        popupOverlay.classList.remove("hidden");
+        popupOverlay.classList.add("flex");
+        document.body.style.overflow = "hidden"; // prevent background scroll
+      });
+
+      // Close popup
+      closePopupBtn.addEventListener("click", closePopup);
+      popupOverlay.addEventListener("click", (e) => {
+        if (e.target === popupOverlay) {
+          closePopup();
+        }
+      });
+
+      function closePopup() {
+        popupOverlay.classList.add("hidden");
+        popupOverlay.classList.remove("flex");
+        document.body.style.overflow = "";
+      }
+
+      // Form submit handler
+      registerForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(registerForm);
+        const username = formData.get("username").trim();
+        const email = formData.get("email").trim();
+        const password = formData.get("password").trim();
+
+        if (!username || !email || !password) {
+          alert("Mohon lengkapi semua bidang.");
+          return;
+        }
+        if (password.length < 6) {
+          alert("Kata sandi minimal 6 karakter.");
+          return;
+        }
+        // Simulate registration success
+        alert("Terima kasih telah mendaftar, " + username + "!");
+        closePopup();
+        registerForm.reset();
+      });
+    </script>
+  </body>
+</html>
